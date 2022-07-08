@@ -20,7 +20,7 @@ export const axiosStub = {
             region = `DE-HE`
             type = `small_airport`
             country = `German`
-          },
+          }(),
           new class implements IAirport {
             id = 2
             name = `‘S-Gravenvoeren heliport`
@@ -29,9 +29,9 @@ export const axiosStub = {
             region = `BE-WLG`
             type = `closed`
             country = `Belarus`
-          }
+          }()
         ];
-      }
+      }()
     }
   }
 }
