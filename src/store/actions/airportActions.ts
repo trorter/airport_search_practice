@@ -3,12 +3,14 @@ import {AppDispatch} from "../index";
 import {IAirport, ServerResponse} from "../../models/models";
 import {airportSlice} from "../slices/airportSlice";
 
-export const fetchAirports = () => {
+export const fetchAirports = (page = 1, count = 50) => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(airportSlice.actions.fetching())
 
-      const response = await axios.get<ServerResponse<IAirport>>("airports")
+      const response = await axios.get<ServerResponse<IAirport>>("airports", {
+        params: {page, count}
+      })
 
       dispatch(airportSlice.actions.fetchSuccess(response.data.results))
     } catch (e) {

@@ -15,21 +15,21 @@ export const axiosStub = {
           new class implements IAirport {
             id = 1
             name = `"Der Dingel" Airfiled`
-            ident = `1`
-            local_code = `141`
-            region = `Europe`
-            type = `stub_1`
+            ident = `DE-0140`
+            local_code = `DE`
+            region = `DE-HE`
+            type = `small_airport`
             country = `German`
           },
           new class implements IAirport {
             id = 2
             name = `‘S-Gravenvoeren heliport`
-            ident = `12`
-            local_code = `565`
-            region = `Europe`
-            type = `stub_2`
+            ident = `EBSN`
+            local_code = `BE`
+            region = `BE-WLG`
+            type = `closed`
             country = `Belarus`
-          },
+          }
         ];
       }
     }
