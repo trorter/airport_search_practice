@@ -6,7 +6,7 @@ import {fetchAirports} from "../store/actions/airportActions";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import ReactPaginate from "react-paginate";
 
-const ITEMS_PER_PAGE = 50
+const ITEMS_PER_PAGE = 3
 
 export function MainPage() {
 
