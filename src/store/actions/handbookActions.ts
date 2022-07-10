@@ -4,7 +4,7 @@ import {handbookSlice} from "../slices/handbookSlice";
 import {axiosStub} from "../../axios/stubs";
 import {IAirportCountry, IAirportRegion, IAirportType} from "../../models/models";
 
-export const fetchHandbooks = (page = 1, count = 50) => {
+export const fetchHandbooks = () => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(handbookSlice.actions.fetching())
