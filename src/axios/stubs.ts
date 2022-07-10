@@ -1,7 +1,11 @@
-import {IAirport, ServerResponse} from "../models/models";
+import {IAirport, IAirportCountry, IAirportRegion, IAirportType, ServerResponse} from "../models/models";
 
-interface Response<T> {
+interface GetAirportResponse<T> {
   data: ServerResponse<T>
+}
+
+interface GetHandbooksResponse<T> {
+  data: Array<T>
 }
 
 const stubAirports = [
@@ -46,7 +50,7 @@ const stubAirports = [
     name: '02 Ranch Airport',
     ident: 'US-TX',
     local_code: 'US',
-    region: 'US',
+    region: 'USA',
     type: 'closed',
     country: 'USA'
   } as IAirport,
@@ -55,14 +59,14 @@ const stubAirports = [
     name: '1 Razryvno-Moiseevskaya Helipad',
     ident: 'RU-TOM',
     local_code: 'RU',
-    region: 'RU',
+    region: 'RUS',
     type: 'heliport',
     country: 'Russia'
   } as IAirport
 ]
 
 export const axiosStub = {
-  get: (url: string, config: {params: any}): Response<IAirport> => {
+  getAirports: (url: string, config: {params: any}): GetAirportResponse<IAirport> => {
 
     console.log("STUB:", "params=", config.params)
 
@@ -89,5 +93,14 @@ export const axiosStub = {
     result.data.count = stubAirports.length
 
     return result
+  },
+  getRegions: (): GetHandbooksResponse<IAirportRegion> => {
+    return {data: ['DE-HE', 'BE-WLG', 'US-AZ', 'MMPE', 'USA', 'RUS']}
+  },
+  getTypes: (): GetHandbooksResponse<IAirportType> => {
+    return {data: ['small_airport', 'closed', 'heliport']}
+  },
+  getCountries: (): GetHandbooksResponse<IAirportCountry> => {
+    return {data: ['German', 'Belarus', 'USA', 'Mexico', 'Russia']}
   }
 }

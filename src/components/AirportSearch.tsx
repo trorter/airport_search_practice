@@ -4,6 +4,7 @@ import {useDebounce} from "../hooks/debounce";
 import axios from "../axios/index";
 import {IAirport, ServerResponse} from "../models/models";
 import {useNavigate} from "react-router-dom";
+import {axiosStub} from "../axios/stubs";
 
 const AirportSearch: FC = () => {
 
@@ -15,7 +16,12 @@ const AirportSearch: FC = () => {
   const [dropdown, setDropdown] = useState(false)
 
   async function searchAirports() {
-    const response = await axios.get<ServerResponse<IAirport>>("airports", {params: {search: debounce, count: 10}})
+    let response
+    if (process.env.REACT_APP_STUB_MODE === 'false') {
+      response = await axios.get<ServerResponse<IAirport>>("airports", {params: {search: debounce, count: 10}})
+    } else {
+      response = axiosStub.getAirports("airports", {params: {search: debounce, count: 10}})
+    }
     setAirports(response.data.results)
   }
 
@@ -25,7 +31,7 @@ const AirportSearch: FC = () => {
     } else {
       setDropdown(false)
     }
-  }, [debounce])
+  }, [debounce, searchAirports])
 
   return (
     <div className={"mb-4 relative"}>
