@@ -9,7 +9,7 @@ export interface IAirport {
 }
 
 export interface ServerResponse<T> {
-  counter: number
+  count: number
   next: number
   previous: number
   results: Array<T>

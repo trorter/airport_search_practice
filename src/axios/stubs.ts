@@ -5,10 +5,13 @@ interface Response<T> {
 }
 
 export const axiosStub = {
-  get: (): Response<IAirport> => {
+  get: (url: string, config: {params: any}): Response<IAirport> => {
+
+    console.log("STUB:", "params=", config.params)
+
     return {
       data: new class implements ServerResponse<IAirport> {
-        counter = 11;
+        count = 1101;
         next = 12;
         previous = 10;
         results = [

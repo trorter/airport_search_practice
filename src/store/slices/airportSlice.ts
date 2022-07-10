@@ -4,13 +4,20 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 interface AirportState {
   loading: boolean
   error: string
+  count: number
   airports: Array<IAirport>
 }
 
 const initialState: AirportState = {
   loading: false,
   error: '',
+  count: 0,
   airports: []
+}
+
+interface AirportPayload {
+  airports: Array<IAirport>
+  count: number
 }
 
 export const airportSlice = createSlice({
@@ -20,9 +27,11 @@ export const airportSlice = createSlice({
     fetching(state) {
       state.loading = true
     },
-    fetchSuccess(state, action: PayloadAction<Array<IAirport>>) {
+    fetchSuccess(state, action: PayloadAction<AirportPayload>) {
       state.loading = false
-      state.airports = action.payload
+      state.airports = action.payload.airports
+      state.count = action.payload.count
+      state.error = ''
     },
     fetchError(state, action: PayloadAction<Error>) {
       state.loading = false
